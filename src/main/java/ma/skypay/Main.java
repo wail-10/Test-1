@@ -12,6 +12,8 @@ public class Main {
             account.withdraw(500);
             System.out.println("Balance after withdrawal: " + account.getBalance());
 
+            System.out.println("=== Bank Statement ===");
+            account.printStatement();
 
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());

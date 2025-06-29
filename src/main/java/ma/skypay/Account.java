@@ -43,7 +43,12 @@ public class Account implements AccountService{
 
     @Override
     public void printStatement() {
+        System.out.println("Date || Amount || Balance");
 
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            Transaction transaction = transactions.get(i);
+            System.out.println(transaction.toString());
+        }
     }
 
     private static class Transaction {
