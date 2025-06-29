@@ -20,6 +20,25 @@ public class Main {
             System.out.println("=== Bank Statement ===");
             account.printStatement();
 
+            System.out.println("\n=== Testing Exception Handling ===");
+
+            try {
+                account.withdraw(-100);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Caught expected exception: " + e.getMessage());
+            }
+
+            try {
+                account.withdraw(10000); // More than balance
+            } catch (IllegalArgumentException e) {
+                System.out.println("Caught expected exception: " + e.getMessage());
+            }
+
+            try {
+                account.deposit(0);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Caught expected exception: " + e.getMessage());
+            }
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
