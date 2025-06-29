@@ -8,14 +8,24 @@ import java.util.List;
 public class Account implements AccountService{
     private List<Transaction> transactions;
     private int balance;
+    private LocalDate transactionDate;
 
     public Account() {
         this.transactions = new ArrayList<>();
         this.balance = 0;
+        this.transactionDate = null;
     }
 
     public int getBalance() {
         return balance;
+    }
+
+    public void setTransactionDate(LocalDate date) {
+        this.transactionDate = date;
+    }
+
+    private LocalDate getTransactionDate() {
+        return transactionDate != null ? transactionDate : LocalDate.now();
     }
 
     @Override
@@ -25,7 +35,7 @@ public class Account implements AccountService{
         }
 
         this.balance += amount;
-        transactions.add(new Transaction(LocalDate.now(), amount, this.balance, TransactionType.DEPOSIT));
+        transactions.add(new Transaction(getTransactionDate(), amount, this.balance, TransactionType.DEPOSIT));
     }
 
     @Override
@@ -38,7 +48,7 @@ public class Account implements AccountService{
         }
 
         this.balance -= amount;
-        transactions.add(new Transaction(LocalDate.now(), amount, this.balance, TransactionType.WITHDRAWAL));
+        transactions.add(new Transaction(getTransactionDate(), amount, this.balance, TransactionType.WITHDRAWAL));
     }
 
     @Override
